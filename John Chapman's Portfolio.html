@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Chapman — Digital Marketing Strategist</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+  :root{
+    --ink:#12213B;
+    --paper:#EEF1EF;
+    --paper-2:#E4E8E4;
+    --spotlight:#E8A33D;
+    --spotlight-dim:#B87F2C;
+    --slate:#5B6472;
+    --line:#CBD2CE;
+    --line-dark:#33456A;
+    --cream-text:#F3F1E9;
+    --max:960px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    line-height:1.1;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+  section{padding:88px 0;}
+  @media (max-width:640px){ section{padding:56px 0;} }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--spotlight);
+    outline-offset:3px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.site{
+    background:var(--ink);
+    color:var(--cream-text);
+    position:sticky; top:0; z-index:10;
+    border-bottom:1px solid var(--line-dark);
+  }
+  .navrow{
+    max-width:var(--max); margin:0 auto; padding:18px 28px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .navrow .name{font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem;}
+  .navrow nav a{
+    text-decoration:none; color:var(--cream-text); opacity:.82;
+    margin-left:26px; font-size:.95rem;
+  }
+  .navrow nav a:hover{opacity:1;}
+  @media (max-width:560px){ .navrow nav a{margin-left:14px; font-size:.85rem;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--ink);
+    color:var(--cream-text);
+    position:relative;
+    overflow:hidden;
+    padding:110px 0 96px;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:-260px; left:8%;
+    width:640px; height:640px;
+    background:radial-gradient(circle, rgba(232,163,61,0.30) 0%, rgba(232,163,61,0.10) 38%, rgba(232,163,61,0) 68%);
+    pointer-events:none;
+  }
+  .hero .wrap{position:relative;}
+  .hero .role{
+    color:var(--spotlight);
+    font-size:1.05rem;
+    font-weight:500;
+    margin-bottom:14px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.2rem);
+    max-width:11ch;
+  }
+  .hero .tagline{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.35rem;
+    color:var(--cream-text);
+    opacity:.88;
+    max-width:38ch;
+    margin-top:22px;
+  }
+  .hero .sub{
+    max-width:56ch;
+    color:var(--cream-text);
+    opacity:.72;
+    margin-top:18px;
+    font-size:1rem;
+  }
+  .cta-row{margin-top:38px; display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block;
+    padding:13px 26px;
+    text-decoration:none;
+    font-size:.95rem;
+    font-weight:500;
+    border-radius:2px;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn-solid{background:var(--spotlight); color:var(--ink);}
+  .btn-solid:hover{background:#f2b458; transform:translateY(-1px);}
+  .btn-outline{border:1px solid rgba(243,241,233,0.4); color:var(--cream-text);}
+  .btn-outline:hover{border-color:var(--cream-text); transform:translateY(-1px);}
+
+  /* ---------- STAT STRIP ---------- */
+  .stats{
+    background:var(--paper-2);
+    border-bottom:1px solid var(--line);
+  }
+  .stats .wrap{
+    padding:52px 28px;
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:32px;
+  }
+  @media (max-width:760px){ .stats .wrap{grid-template-columns:repeat(2,1fr);} }
+  .stat .num{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:2.1rem;
+    color:var(--ink);
+  }
+  .stat .label{
+    color:var(--slate);
+    font-size:.88rem;
+    margin-top:6px;
+    max-width:20ch;
+  }
+
+  /* ---------- SECTION HEADS ---------- */
+  .section-head{margin-bottom:44px; max-width:60ch;}
+  .section-head h2{font-size:2rem;}
+  .section-head p{color:var(--slate); margin-top:10px; font-size:1rem;}
+
+  /* ---------- CASE STUDIES ---------- */
+  .case{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:36px;
+    padding:36px 0;
+    border-top:1px solid var(--line);
+  }
+  .case:last-child{border-bottom:1px solid var(--line);}
+  @media (max-width:700px){ .case{grid-template-columns:1fr; gap:14px;} }
+  .case .who{
+    color:var(--slate);
+    font-size:.9rem;
+    line-height:1.5;
+  }
+  .case .who .client{
+    display:block;
+    color:var(--ink);
+    font-weight:500;
+    font-size:1rem;
+    margin-bottom:4px;
+  }
+  .case h3{font-size:1.4rem; margin-bottom:14px;}
+  .case .result{
+    margin-top:16px;
+    padding-top:16px;
+    border-top:1px dashed var(--line);
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+  }
+  .case .result .figure{min-width:120px;}
+  .case .result .figure .n{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.5rem;
+    color:var(--spotlight-dim);
+  }
+  .case .result .figure .l{font-size:.82rem; color:var(--slate); margin-top:2px;}
+
+  /* ---------- REVIEWS ---------- */
+  .reviews{background:var(--ink); color:var(--cream-text);}
+  .reviews .section-head p{color:rgba(243,241,233,.62);}
+  .reviews .section-head h2{color:var(--cream-text);}
+  .rating-line{
+    display:flex; align-items:baseline; gap:10px;
+    margin-bottom:40px;
+  }
+  .rating-line .score{font-family:'Fraunces', serif; font-size:1.6rem; font-weight:600; color:var(--spotlight);}
+  .rating-line .stars{color:var(--spotlight); font-size:1.1rem;}
+  .rating-line .count{color:rgba(243,241,233,.6); font-size:.9rem;}
+  .quote-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:28px;
+  }
+  @media (max-width:700px){ .quote-grid{grid-template-columns:1fr;} }
+  .quote{
+    border-left:2px solid var(--spotlight);
+    padding-left:20px;
+  }
+  .quote p{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.08rem;
+    line-height:1.5;
+    margin:0 0 12px;
+    color:var(--cream-text);
+  }
+  .quote .attr{font-size:.85rem; color:rgba(243,241,233,.6);}
+
+  /* ---------- TOOLS ---------- */
+  .tools .list{
+    display:flex; flex-wrap:wrap; gap:12px 14px;
+  }
+  .tools .chip{
+    border:1px solid var(--line);
+    padding:8px 16px;
+    font-size:.92rem;
+    border-radius:2px;
+    color:var(--ink);
+  }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline-item{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:24px;
+    padding:22px 0;
+    border-top:1px solid var(--line);
+  }
+  .timeline-item:last-child{border-bottom:1px solid var(--line);}
+  @media (max-width:600px){ .timeline-item{grid-template-columns:1fr; gap:4px;} }
+  .timeline-item .when{color:var(--slate); font-size:.88rem; padding-top:3px;}
+  .timeline-item .role{font-weight:600; font-size:1.02rem;}
+  .timeline-item .org{color:var(--slate); font-size:.92rem; margin-top:2px;}
+  .edu{margin-top:44px; padding-top:28px; border-top:1px solid var(--line);}
+  .edu .degree{font-weight:600;}
+  .edu .school{color:var(--slate); font-size:.92rem;}
+  .edu-item + .edu-item{margin-top:14px;}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{
+    background:var(--ink);
+    color:var(--cream-text);
+    padding:80px 0 44px;
+  }
+  footer h2{color:var(--cream-text); font-size:2rem; max-width:16ch;}
+  footer .contact-grid{
+    margin-top:32px;
+    display:flex; flex-wrap:wrap; gap:14px 30px;
+    font-size:.98rem;
+  }
+  footer .contact-grid a{text-decoration:none; opacity:.85;}
+  footer .contact-grid a:hover{opacity:1; color:var(--spotlight);}
+  footer .fineprint{
+    margin-top:60px;
+    padding-top:24px;
+    border-top:1px solid var(--line-dark);
+    color:rgba(243,241,233,.5);
+    font-size:.82rem;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="navrow">
+    <div class="name">John Chapman</div>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="role">Digital Marketing Strategist</div>
+    <h1>John Chapman</h1>
+    <p class="tagline">I turn subscriber lists and pipelines into revenue lines.</p>
+    <p class="sub">MBA-backed marketer who builds the CRM architecture, automation, and campaign strategy behind the numbers — then reads the numbers to do it better next time. Based in Virginia Beach, VA.</p>
+    <div class="cta-row">
+      <a class="btn btn-solid" href="mailto:marketing.chap@outlook.com">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stat">
+      <div class="num">1M+</div>
+      <div class="label">campaign recipients reached in a single CRM rollout</div>
+    </div>
+    <div class="stat">
+      <div class="num">41,000</div>
+      <div class="label">subscribers engaged in a 3-week email campaign</div>
+    </div>
+    <div class="stat">
+      <div class="num">400</div>
+      <div class="label">active accounts retained through partnership work</div>
+    </div>
+    <div class="stat">
+      <div class="num">5.0★</div>
+      <div class="label">average client rating across Google reviews</div>
+    </div>
+  </div>
+</div>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Case studies</h2>
+      <p>A sample of campaigns and systems built across independent consulting and in-house roles.</p>
+    </div>
+
+    <div class="case">
+      <div class="who">
+        <span class="client">The Marketing Chap</span>
+        Independent consulting, 2025
+      </div>
+      <div class="body">
+        <h3>Digital platform for a non-profit</h3>
+        <p>The organization was relying on manual sign-ups and offline payment collection, which capped how much they could fundraise. I designed and launched a full digital platform with automated registration and integrated payment processing, removing the bottleneck between interest and funding.</p>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="who">
+        <span class="client">The Marketing Chap</span>
+        Independent consulting, 2025
+      </div>
+      <div class="body">
+        <h3>B2C email campaign at scale</h3>
+        <p>Built and managed targeted email workflows for a client looking to re-engage a large, cold subscriber base — with strategic CTA placement designed to convert opens into site traffic.</p>
+        <div class="result">
+          <div class="figure"><div class="n">41,000</div><div class="l">subscribers touched in 3 weeks</div></div>
+          <div class="figure"><div class="n">6.2%</div><div class="l">open rate</div></div>
+          <div class="figure"><div class="n">3.25%</div><div class="l">click-through rate</div></div>
+          <div class="figure"><div class="n">above avg.</div><div class="l">vs. prior 6-month company benchmark</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="who">
+        <span class="client">The Marketing Chap</span>
+        Independent consulting, 2025
+      </div>
+      <div class="body">
+        <h3>Enterprise CRM campaign, HubSpot & Salesforce</h3>
+        <p>Engineered and deployed a large-scale digital campaign through client CRMs, then worked with their team on segmentation and content delivery so they could read the results against industry benchmarks going forward.</p>
+        <div class="result">
+          <div class="figure"><div class="n">1M+</div><div class="l">recipients reached</div></div>
+          <div class="figure"><div class="n">6%</div><div class="l">click-through rate</div></div>
+          <div class="figure"><div class="n">5%</div><div class="l">open rate</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="who">
+        <span class="client">Hampton Roads Chamber</span>
+        Manager for Member Development, 2024–2025
+      </div>
+      <div class="body">
+        <h3>Pipeline growth and B2B partnerships</h3>
+        <p>Optimized multi-channel lead segmentation to manage a high-volume prospect pipeline, and built a B2B network with local business and government leaders that opened doors to high-value introductions.</p>
+        <div class="result">
+          <div class="figure"><div class="n">200+</div><div class="l">prospects in active pipeline</div></div>
+          <div class="figure"><div class="n">400</div><div class="l">active accounts grown and retained</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What clients say</h2>
+      <p>Feedback from Google reviews and direct client testimonials.</p>
+    </div>
+    <div class="rating-line">
+      <span class="score">5.0</span>
+      <span class="stars">★★★★★</span>
+      <span class="count">average across Google reviews</span>
+    </div>
+    <div class="quote-grid">
+      <div class="quote">
+        <p>John is extremely knowledgeable in all things SEO — great to work with, and his expertise covers a wide variety of marketing.</p>
+        <div class="attr">Google review</div>
+      </div>
+      <div class="quote">
+        <p>Great communication, prompt on deliverables, and every expectation was met or exceeded. Highly recommend for anyone in need.</p>
+        <div class="attr">A.E., client testimonial</div>
+      </div>
+      <div class="quote">
+        <p>John has a real knack for marketing and brings genuine passion to the work. Highly recommend him for any business marketing need.</p>
+        <div class="attr">Q.V., client testimonial</div>
+      </div>
+      <div class="quote">
+        <p>Consistently creative, professional, and results-driven on every project — I'd gladly recommend him to anyone needing top-tier marketing.</p>
+        <div class="attr">B.R., client testimonial</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Experience</h2>
+      <p>Six years across agency, enterprise, and independent consulting work.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="when">Mar 2025 – Present</div>
+      <div>
+        <div class="role">Owner, Marketing Automation Consultant</div>
+        <div class="org">The Marketing Chap (independent)</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="when">Sep 2024 – Present</div>
+      <div>
+        <div class="role">Marketing Coordinator</div>
+        <div class="org">VA Beach Antique Mall & Toymeister</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="when">Mar 2024 – Mar 2025</div>
+      <div>
+        <div class="role">Manager for Member Development</div>
+        <div class="org">Hampton Roads Chamber</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="when">May 2023 – Mar 2024</div>
+      <div>
+        <div class="role">Business Development Manager</div>
+        <div class="org">ECPI University</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="when">May 2022 – May 2023</div>
+      <div>
+        <div class="role">National Account Manager</div>
+        <div class="org">AudioCodes</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="when">Sep 2018 – May 2022</div>
+      <div>
+        <div class="role">Territory Specialist</div>
+        <div class="org">T-Mobile — led regional CX operations and the COVID-era rollout of remote, digital-to-retail engagement systems</div>
+      </div>
+    </div>
+
+    <div class="edu">
+      <div class="edu-item">
+        <div class="degree">MBA, Longwood University</div>
+        <div class="school">Graduated 2023</div>
+      </div>
+      <div class="edu-item">
+        <div class="degree">B.A., University of Maryland Global Campus</div>
+        <div class="school">Graduated 2022 — Alpha Sigma Lambda, Tau Chapter Honor Society; National Society of Collegiate Scholars</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tools">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Tools</h2>
+    </div>
+    <div class="list">
+      <span class="chip">HubSpot</span>
+      <span class="chip">Salesforce</span>
+      <span class="chip">GA4</span>
+      <span class="chip">GoHighLevel</span>
+      <span class="chip">Meta Business Suite</span>
+      <span class="chip">WordPress</span>
+      <span class="chip">Growth Zone</span>
+      <span class="chip">SEO / AEO</span>
+      <span class="chip">CRM automation</span>
+      <span class="chip">Lead scoring</span>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Let's talk about the role.</h2>
+    <div class="contact-grid">
+      <a href="mailto:marketing.chap@outlook.com">marketing.chap@outlook.com</a>
+      <a href="tel:+14344654530">(434) 465-4530</a>
+      <a href="https://www.linkedin.com/in/johnchristopherchapman" target="_blank" rel="noopener">linkedin.com/in/johnchristopherchapman</a>
+      <a href="https://themarketingchap.com" target="_blank" rel="noopener">themarketingchap.com</a>
+    </div>
+    <div class="fineprint">
+      <span>Virginia Beach, VA</span>
+      <span>© John Chapman</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
